@@ -1,6 +1,7 @@
 package gee
 
 import (
+	"log"
 	"net/http"
 	"strings"
 )
@@ -36,9 +37,11 @@ func (group *RouterGroup) Group(prefix string) *RouterGroup {
 	return newGroup
 }
 
-func (group *RouterGroup) addRoute(method string, pattern string, handle HandleFunc) {
+func (group *RouterGroup) addRoute(method string, comp string, handle HandleFunc) {
 	//group
-
+	pattern := group.prefix + comp
+	log.Printf("Route %4s - %s", method, pattern)
+	//group.engine.router.addRoute(method, pattern, handler)
 	group.engine.router.addRouter(method, pattern, handle)
 
 }

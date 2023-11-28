@@ -11,8 +11,9 @@ func main() {
 			"name": "wangzeyu",
 		})
 	})
+
 	v1 := router.Group("/hello")
-	v1.GET("/1", func(c *gee.Context) {
+	v1.GET("", func(c *gee.Context) {
 		c.JSON(200, gee.H{
 			"name": "wangzeyu",
 		})

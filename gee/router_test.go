@@ -14,6 +14,11 @@ func newTestRouter() *router {
 	r.addRouter("GET", "/assets/*filepath", nil)
 	return r
 }
+
+//	func newTestRouterGroup() *RouterGroup {
+//		r := NewRouter()
+//
+// }
 func TestGetRoute(t *testing.T) {
 	r := newTestRouter()
 	n, ps := r.getRouter("GET", "/hello/geektutu")
