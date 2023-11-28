@@ -43,10 +43,10 @@ func (n *node) Insert(pattern string, parts []string, height int) {
 	part := parts[height]
 	child := n.mustchild(part)
 	if child == nil {
-		child = &node{part: part, isWild: parts[0] == "*" || parts[0] == ":"}
+		child = &node{part: part, isWild: part[0] == '*' || part[0] == ':'}
 		n.children = append(n.children, child)
 	}
-	n.Insert(pattern, parts, height+1)
+	child.Insert(pattern, parts, height+1)
 	//child=
 }
 func (n *node) Search(parts []string, height int) *node {

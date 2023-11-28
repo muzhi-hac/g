@@ -2,14 +2,15 @@ package gee
 
 import (
 	"net/http"
+	"strings"
 )
 
 type RouterGroup struct {
-	middlewares []HandleFunc
+	//middlewares []HandleFunc
 	prefix      string
 	parent      *RouterGroup
 	engine      *Engine
-	middleware  []*HandleFunc
+	middlewares []HandleFunc
 }
 
 type HandleFunc func(c *Context)
@@ -62,6 +63,16 @@ func (e *Engine) Run(address string) error {
 }
 
 func (e *Engine) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	var middlewares []HandleFunc
+	for _, group := range e.groups {
+		if strings.HasPrefix(req.URL.Path, group.prefix) {
+			middlewares = append(middlewares, group.middlewares...)
+		}
+
+	}
 	c := NewContext(w, req)
+	c.handlers = middlewares
+	c.engine = e
+	//engine.router.handle(c)
 	e.router.handle(c)
 }

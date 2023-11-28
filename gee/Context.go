@@ -29,8 +29,20 @@ func NewContext(w http.ResponseWriter, req *http.Request) *Context {
 	}
 
 }
+func (c *Context) Next() {
+	c.index++
+	s := len(c.handlers)
+	for ; c.index < s; c.index++ {
+		c.handlers[c.index](c)
+	}
+
+}
 func (c *Context) PostForm(key string) string {
 	return c.Req.FormValue(key)
+}
+func (c *Context) Param(key string) string {
+	value, _ := c.Params[key]
+	return value
 }
 func (c *Context) Query(key string) string {
 	return c.Req.URL.Query().Get(key)

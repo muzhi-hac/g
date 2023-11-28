@@ -47,8 +47,9 @@ func (r *router) getRouter(method string, pattern string) (*node, map[string]str
 				params[part[1:]] = strings.Join(parsePattern(pattern)[i:], "/")
 				break
 			}
-			return n, params
 		}
+		return n, params
+
 	}
 	return nil, nil
 
@@ -65,8 +66,9 @@ func (r *router) getRouter(method string, pattern string) (*node, map[string]str
 //}
 
 func NewRouter() *router {
-	return &router{handler: make(map[string]HandleFunc),
-		root: make(map[string]*node)}
+	return &router{
+		handler: make(map[string]HandleFunc),
+		root:    make(map[string]*node)}
 }
 
 //	func (r *router) addRouter(method string, pattern string, handler HandleFunc) {
@@ -84,5 +86,5 @@ func (r *router) handle(c *Context) {
 		c.String(http.StatusNotFound, "404 NOT FOUND")
 
 	}
-
+	c.Next()
 }
