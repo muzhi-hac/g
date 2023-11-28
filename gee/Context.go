@@ -74,8 +74,13 @@ func (c *Context) String(code int, obj interface{}) {
 	// Encode the object to JSON and write it to the response
 	err := json.NewEncoder(c.Writer).Encode(obj)
 	if err != nil {
-		// Handle error (e.g., log it or return an internal server error)
-		http.Error(c.Writer, "Internal Server Error", http.StatusInternalServerError)
-		return
+		// Handle error by returning a JSON error response
+		errMsg := map[string]interface{}{"error": "Internal Server Error"}
+		jsonErr := json.NewEncoder(c.Writer).Encode(errMsg)
+		if jsonErr != nil {
+			// If encoding the error message fails, fall back to a plain text response
+			http.Error(c.Writer, "Internal Server Error", http.StatusInternalServerError)
+			return
+		}
 	}
 }

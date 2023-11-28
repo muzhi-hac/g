@@ -21,6 +21,10 @@ type Engine struct {
 	groups []*RouterGroup
 }
 
+func (group *RouterGroup) Use(midd ...HandleFunc) {
+	group.middlewares = append(group.middlewares, midd...)
+
+}
 func New() *Engine {
 	engine := &Engine{router: NewRouter()}
 	engine.RouterGroup = &RouterGroup{engine: engine}
