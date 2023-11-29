@@ -2,7 +2,11 @@ module Gee
 
 go 1.19
 
-require gee v0.0.0
+require (
+	gee v0.0.0
+	github.com/ipfs/go-ipfs-api v0.7.0
+	github.com/mattn/go-sqlite3 v1.14.18
+)
 
 require (
 	github.com/benbjohnson/clock v1.3.5 // indirect
@@ -11,7 +15,6 @@ require (
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.2.0 // indirect
 	github.com/ipfs/boxo v0.15.0 // indirect
 	github.com/ipfs/go-cid v0.4.1 // indirect
-	github.com/ipfs/go-ipfs-api v0.7.0 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.6 // indirect
 	github.com/libp2p/go-buffer-pool v0.1.0 // indirect
 	github.com/libp2p/go-flow-metrics v0.1.0 // indirect

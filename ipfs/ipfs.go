@@ -19,6 +19,12 @@ var uploadForm = `<html>
 </body>
 </html>`
 
+type catFile struct {
+	filename string
+	content  []byte
+	offset   int64
+}
+
 func main() {
 	router := gee.New()
 
@@ -80,4 +86,20 @@ func uploadToIPFS(file io.Reader) (string, error) {
 	}
 
 	return result, nil
+}
+func CatIpfs(filehash string, filename string) (http.File, error) {
+	sh := shell.NewShell("localhost:5001")
+	cat, err := sh.Cat(filehash)
+	if err != nil {
+
+		return nil, err
+	}
+	content, err := io.ReadAll(cat)
+	if err != nil {
+		return nil, err
+	}
+	file := &catFile{content: content,
+		filename: filename,
+	}
+
 }
