@@ -1,6 +1,7 @@
 package log
 
 import (
+	"io"
 	"log"
 	"os"
 	"sync"
@@ -20,6 +21,27 @@ var (
 	//log.LstdFlags表示选用标准的时间与日期
 	//log.Lshortlife 表示日志中显示文件名与行号
 )
+
+const (
+	InfoLevel = iota
+	ErrorLevel
+	Disabled
+)
+
+func SetLevel(level int) {
+	mu.Lock()
+	defer mu.Unlock()
+	for _, logger := range loggers {
+		logger.SetOutput(os.Stdout)
+
+	}
+	if level > ErrorLevel {
+		errorLog.SetOutput(io.Discard)
+	}
+	if level > InfoLevel {
+		infoLog.SetOutput(io.Discard)
+	}
+}
 
 // log methods
 var (
