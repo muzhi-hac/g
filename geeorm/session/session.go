@@ -1,20 +1,25 @@
 package session
 
 import (
+	"Gee/geeorm/dialect"
 	"Gee/geeorm/log"
+	"Gee/geeorm/schema"
 	"database/sql"
 	"strings"
 )
 
 // 这个包用于与原生交互的部分
 type Session struct {
-	db      *sql.DB
-	sql     strings.Builder
-	sqlVars []interface{}
+	db       *sql.DB
+	dialect  dialect.Dialect
+	refTable *schema.Schema
+	sql      strings.Builder
+	sqlVars  []interface{}
 }
 
-func New(db *sql.DB) *Session {
-	return &Session{db: db}
+func New(db *sql.DB, dialect dialect.Dialect) *Session {
+	return &Session{db: db,
+		dialect: dialect}
 
 }
 func (s *Session) Raw(raw string, value ...interface{}) *Session {
