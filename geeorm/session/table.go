@@ -14,8 +14,7 @@ func (s *Session) Model(value interface{}) *Session {
 		s.refTable = schema.Parse(value, s.dialect)
 	}
 	return s
-}3
-
+}
 func (s *Session) RefTable() *schema.Schema {
 	if s.refTable == nil {
 		log.Error("Model is not set")

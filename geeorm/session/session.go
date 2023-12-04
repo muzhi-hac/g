@@ -22,6 +22,9 @@ func New(db *sql.DB, dialect dialect.Dialect) *Session {
 		dialect: dialect}
 
 }
+func Newsession() {
+
+}
 func (s *Session) Raw(raw string, value ...interface{}) *Session {
 	s.sql.WriteString(raw)
 	s.sql.WriteString(" ")

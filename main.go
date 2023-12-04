@@ -18,12 +18,12 @@ func main() {
 			"name": "wangzeyu",
 		})
 	})
-	//router.GET("/", func(c *gee.Context) {
-	//	c.JSON(200, gee.H{})
+	//router.GET("/", func(c *Gee.Context) {
+	//	c.JSON(200, Gee.H{})
 	//	//fmt.Fprintf(w, "URL.Path = %q\n", req.URL.Path)
 	//})
 	//
-	//router.GET("/hello", func(c *gee.Context) {
+	//router.GET("/hello", func(c *Gee.Context) {
 	//	for k, v := range c.Req.Header {
 	//		fmt.Printf("Header[%q] = %q\n", k, v)
 	//	}

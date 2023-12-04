@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	engine, _ := geeEngine.NewEngine("sqlite3", "gee.db")
+	engine, _ := geeEngine.NewEngine("sqlite3", "Gee.db")
 	defer engine.Close()
 	s := engine.NewSession()
 	_, _ = s.Raw("DROP TABLE IF EXISTS User;").Exec()

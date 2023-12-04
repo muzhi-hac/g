@@ -1,4 +1,5 @@
-//package main
+package main
+
 //
 //import (
 //	"bytes"
@@ -77,7 +78,7 @@
 //	data := marshalStruct(transaction)
 //	//上传到ipfs
 //	hash := UploadIPFS(string(data))
-//	hash2 := UploadFileIpfs("/home/wang/GolandProjects/Gee/gee/gee.go")
+//	hash2 := UploadFileIpfs("/home/wang/GolandProjects/Gee/Gee/Gee.go")
 //	fmt.Println("文件hash是", hash)
 //	fmt.Println("文件夹hash是", hash2)
 //	//从ipfs下载数据

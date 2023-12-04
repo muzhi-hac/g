@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	db, _ := sql.Open("sqlite3", "gee.db")
+	db, _ := sql.Open("sqlite3", "Gee.db")
 	defer func() { _ = db.Close() }()
 	_, _ = db.Exec("DROP TABLE IF EXISTS User;")
 	_, _ = db.Exec("CREATE TABLE User(Name text);")

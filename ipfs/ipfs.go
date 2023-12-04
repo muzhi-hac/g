@@ -6,6 +6,7 @@ import (
 	"github.com/ipfs/go-ipfs-api"
 	"html/template"
 	"io"
+	"io/fs"
 	"net/http"
 )
 
@@ -23,6 +24,31 @@ type catFile struct {
 	filename string
 	content  []byte
 	offset   int64
+}
+
+func (c catFile) Close() error {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (c catFile) Read(p []byte) (n int, err error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (c catFile) Seek(offset int64, whence int) (int64, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (c catFile) Readdir(count int) ([]fs.FileInfo, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (c catFile) Stat() (fs.FileInfo, error) {
+	//TODO implement me
+	panic("implement me")
 }
 
 func main() {
@@ -101,5 +127,5 @@ func CatIpfs(filehash string, filename string) (http.File, error) {
 	file := &catFile{content: content,
 		filename: filename,
 	}
-
+	return file, err
 }
